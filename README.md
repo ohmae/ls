@@ -6,3 +6,8 @@
 
 本来は1ファイルの履歴として扱うべきかもしれませんが、
 作成していく過程をそれぞれ別ファイルに分けて登録しています。
+
+## 解説ページ
+
+- [ディレクトリエントリの取得](http://www.mm2d.net/main/prog/linux/ls-01.html)
+- [隠しファイルのフィルタリング](http://www.mm2d.net/main/prog/linux/ls-02.html)
