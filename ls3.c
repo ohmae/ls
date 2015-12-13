@@ -78,7 +78,7 @@ static void list_dir(const char *base_path) {
     if (filter != FILTER_ALL
         && name[0] == '.'
         && (filter == FILTER_DEFAULT
-            || name[1 + name[1] == '.'] == '\0')) {
+            || name[1 + (name[1] == '.')] == '\0')) {
       continue;
     }
     printf("%s\n", name);

@@ -338,7 +338,7 @@ static void list_dir(const char *base_path) {
     if (filter != FILTER_ALL
         && name[0] == '.'
         && (filter == FILTER_DEFAULT
-            || name[1 + name[1] == '.'] == '\0')) {
+            || name[1 + (name[1] == '.')] == '\0')) {
       continue;
     }
     strncpy(&path[path_len], dent->d_name, PATH_MAX - path_len);
@@ -347,7 +347,7 @@ static void list_dir(const char *base_path) {
       continue;
     }
     if (recursive && S_ISDIR(dent_stat.st_mode)) {
-      if (!(name[0] == '.' && name[1 + name[1] == '.'] == '\0')) {
+      if (!(name[0] == '.' && name[1 + (name[1] == '.')] == '\0')) {
         subque->next = new_subdir(path, subque->next);
         subque = subque->next;
       }

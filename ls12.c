@@ -526,7 +526,7 @@ static void list_dir(const char *base_path) {
     if (filter != FILTER_ALL
         && name[0] == '.'
         && (filter == FILTER_DEFAULT
-            || name[1 + name[1] == '.'] == '\0')) {
+            || name[1 + (name[1] == '.')] == '\0')) {
       continue;
     }
     strncpy(&path[path_len], dent->d_name, PATH_MAX - path_len);
@@ -541,9 +541,10 @@ static void list_dir(const char *base_path) {
   for (i = 0; i < list.used; i++) {
     struct info *info = list.array[i];
     if (recursive && S_ISDIR(info->stat.st_mode)) {
-      if (!(info->name[0] == '.'
-          && info->name[1 + info->name[1] == '.'] == '\0')) {
-        strncpy(&path[path_len], info->name, PATH_MAX - path_len);
+      const char *name = info->name;
+      if (!(name[0] == '.'
+          && name[1 + (name[1] == '.')] == '\0')) {
+        strncpy(&path[path_len], name, PATH_MAX - path_len);
         subque->next = new_subdir(path, subque->next);
         subque = subque->next;
       }
