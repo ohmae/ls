@@ -7,7 +7,7 @@
  * http://opensource.org/licenses/MIT
  *
  * @brief lsコマンド風のプログラムを作るNo.4
- * ファイル属性のインジケータを表示
+ * タイプ識別子を表示する
  *
  * @author <a href="mailto:ryo@mm2d.net">大前良介(OHMAE Ryosuke)</a>
  * @date 2015/11/11
