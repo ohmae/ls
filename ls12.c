@@ -407,6 +407,7 @@ static struct info *new_info(const char *path, const char *name) {
   strncpy(info->name, name, NAME_MAX + 1);
   if (lstat(path, &info->stat) != 0) {
     perror(path);
+    free(info);
     return NULL;
   }
   if (S_ISLNK(info->stat.st_mode)) {
