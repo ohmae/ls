@@ -20,6 +20,7 @@
 #include <dirent.h>
 #include <getopt.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <pwd.h>
 #include <grp.h>
