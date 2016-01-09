@@ -86,7 +86,6 @@ static char *parse_cmd_args(int argc, char**argv) {
       { "color", no_argument, NULL, 'C' },
       { "classify", no_argument, NULL, 'F' },
       { "long-format", no_argument, NULL, 'l' },
-
   };
   while ((opt = getopt_long(argc, argv, "aACFl", longopts, NULL)) != -1) {
     switch (opt) {

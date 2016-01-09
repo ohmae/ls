@@ -119,7 +119,6 @@ static char *parse_cmd_args(int argc, char**argv) {
       { "classify", no_argument, NULL, 'F' },
       { "long-format", no_argument, NULL, 'l' },
       { "recursive", no_argument, NULL, 'R' },
-
   };
   while ((opt = getopt_long(argc, argv, "aACFlR", longopts, NULL)) != -1) {
     switch (opt) {

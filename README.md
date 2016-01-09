@@ -11,3 +11,6 @@
 
 - [ディレクトリエントリの取得](http://www.mm2d.net/main/prog/linux/ls-01.html)
 - [隠しファイルのフィルタリング](http://www.mm2d.net/main/prog/linux/ls-02.html)
+- [タイプ識別子の表示](http://www.mm2d.net/main/prog/linux/ls-03.html)
+- [モード文字列の表示](http://www.mm2d.net/main/prog/linux/ls-04.html)
+

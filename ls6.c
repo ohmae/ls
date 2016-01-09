@@ -70,7 +70,6 @@ static char *parse_cmd_args(int argc, char**argv) {
       { "almost-all", no_argument, NULL, 'A' },
       { "classify", no_argument, NULL, 'F' },
       { "long-format", no_argument, NULL, 'l' },
-
   };
   while ((opt = getopt_long(argc, argv, "aAFl", longopts, NULL)) != -1) {
     switch (opt) {
