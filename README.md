@@ -13,4 +13,7 @@
 - [隠しファイルのフィルタリング](http://www.mm2d.net/main/prog/linux/ls-02.html)
 - [タイプ識別子の表示](http://www.mm2d.net/main/prog/linux/ls-03.html)
 - [モード文字列の表示](http://www.mm2d.net/main/prog/linux/ls-04.html)
+- [ハードリンク数、uid/gid、サイズ、タイムスタンプの表示](http://www.mm2d.net/main/prog/linux/ls-05.html)
+- [ユーザ名、グループ名の表示と日時のフォーマット](http://www.mm2d.net/main/prog/linux/ls-06.html)
+- [シンボリックリンクのリンク先表示](http://www.mm2d.net/main/prog/linux/ls-07.html)
 
