@@ -16,4 +16,5 @@
 - [ハードリンク数、uid/gid、サイズ、タイムスタンプの表示](http://www.mm2d.net/main/prog/linux/ls-05.html)
 - [ユーザ名、グループ名の表示と日時のフォーマット](http://www.mm2d.net/main/prog/linux/ls-06.html)
 - [シンボリックリンクのリンク先表示](http://www.mm2d.net/main/prog/linux/ls-07.html)
+- [ファイル種別に基づく色付き表示](http://www.mm2d.net/main/prog/linux/ls-08.html)
 
