@@ -18,3 +18,10 @@
 - [シンボリックリンクのリンク先表示](http://www.mm2d.net/main/prog/linux/ls-07.html)
 - [ファイル種別に基づく色付き表示](http://www.mm2d.net/main/prog/linux/ls-08.html)
 
+
+## Author
+大前 良介 (OHMAE Ryosuke)
+http://www.mm2d.net/
+
+## License
+[MIT License](https://github.com/ohmae/CpuUsage/blob/master/LICENSE.txt)
