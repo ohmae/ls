@@ -17,7 +17,7 @@ CFLAGS = -Wall -g3 -O2
 COPTS  = -D_DEBUG_
 LDFLAGS =
 # MODULES = $(patsubst %.c,%,$(wildcard *.c))
-MODULES = ls1 ls2 ls3 ls4 ls5 ls6 ls7 ls8 ls9 ls10 ls11 ls12 ls13
+MODULES = ls1 ls2 ls3 ls4 ls5 ls6 ls7 ls8 ls9 ls10 ls11 ls12 ls13 ls14
 
 .PHONY: all clean
 all: $(MODULES)
