@@ -1,5 +1,5 @@
 /**
- * @file ls12.c
+ * @file ls13.c
  *
  * Copyright(c) 2015 大前良介(OHMAE Ryosuke)
  *
@@ -358,7 +358,7 @@ static void init_info_list(struct info_list *list, int size) {
 }
 
 /**
- * @biref 可変長リスト内のメモリを開放する
+ * @brief 可変長リスト内のメモリを開放する
  * リスト内に登録されたinfoも合わせて開放する。
  *
  * @param[IN] list 開放する構造体
