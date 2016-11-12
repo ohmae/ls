@@ -44,9 +44,10 @@ enum {
 /**
  * 再帰呼び出しのためのディレクトリ名を保持するリンクリスト
  */
-struct subdir {
+struct dir_path {
   char path[PATH_MAX + 1];
-  struct subdir *next;
+  int depth;
+  struct dir_path *next;
 };
 
 /**
@@ -78,7 +79,7 @@ static void print_user(uid_t uid);
 static void print_group(gid_t gid);
 static void get_time_string(char *str, time_t time);
 static void print_name_with_color(const char *name, mode_t mode, bool link_ok);
-static struct subdir *new_subdir(const char *path, struct subdir *next);
+static struct dir_path *new_dir_path(const char *path, int depth, struct dir_path *next);
 static void init_info_list(struct info_list *list, int size);
 static void free_info_list(struct info_list *list);
 static void add_info(struct info_list *list, struct info *info);
@@ -86,7 +87,7 @@ static struct info *new_info(const char *path, const char *name);
 static int compare_name(const void *a, const void *b);
 static void sort_list(struct info_list *list);
 static void print_info(struct info *info);
-static void list_dir(const char *base_path);
+static void list_dir(struct dir_path *base);
 
 /**
  * 隠しファイルの表示方針
@@ -112,10 +113,6 @@ static time_t half_year_ago;
  * 再帰的な表示
  */
 static bool recursive = false;
-/**
- * サブディレクトリリンクリストのトップ
- */
-struct subdir *top = NULL;
 
 /**
  * @brief malloc結果がNULLだった場合にexitする。
@@ -211,19 +208,13 @@ static void get_mode_string(mode_t mode, char *str) {
            (S_ISSOCK(mode)) ? 's' : '?';
   str[1] = mode & S_IRUSR ? 'r' : '-';
   str[2] = mode & S_IWUSR ? 'w' : '-';
-  str[3] = mode & S_ISUID ?
-      (mode & S_IXUSR ? 's' : 'S') :
-      (mode & S_IXUSR ? 'x' : '-');
+  str[3] = mode & S_ISUID ? (mode & S_IXUSR ? 's' : 'S') : (mode & S_IXUSR ? 'x' : '-');
   str[4] = mode & S_IRGRP ? 'r' : '-';
   str[5] = mode & S_IWGRP ? 'w' : '-';
-  str[6] = mode & S_ISGID ?
-      (mode & S_IXGRP ? 's' : 'S') :
-      (mode & S_IXGRP ? 'x' : '-');
+  str[6] = mode & S_ISGID ? (mode & S_IXGRP ? 's' : 'S') : (mode & S_IXGRP ? 'x' : '-');
   str[7] = mode & S_IROTH ? 'r' : '-';
   str[8] = mode & S_IWOTH ? 'w' : '-';
-  str[9] = mode & S_ISVTX ?
-      (mode & S_IXOTH ? 't' : 'T') :
-      (mode & S_IXOTH ? 'x' : '-');
+  str[9] = mode & S_ISVTX ? (mode & S_IXOTH ? 't' : 'T') : (mode & S_IXOTH ? 'x' : '-');
   str[10] = '\0';
 }
 
@@ -339,14 +330,16 @@ static void print_name_with_color(const char *name, mode_t mode, bool link_ok) {
 /**
  * @brief struct subdirのファクトリーメソッド
  * @param[IN] path パス
+ * @param[IN] depth 深さ
  * @param[IN] next 次の要素へのポインタ
  * @return struct subdirへのポインタ
  */
-static struct subdir *new_subdir(const char *path, struct subdir *next) {
-  struct subdir *s = xmalloc(sizeof(struct subdir));
+static struct dir_path *new_dir_path(const char *path, int depth, struct dir_path *next) {
+  struct dir_path *s = xmalloc(sizeof(struct dir_path));
   if (path != NULL) {
     strncpy(s->path, path, sizeof(s->path));
   }
+  s->depth = depth;
   s->next = next;
   return s;
 }
@@ -494,16 +487,17 @@ static void print_info(struct info *info) {
 
 /**
  * @brief 指定パスのディレクトリエントリをリストする
- * @param[IN] base_path パス
+ * @param[IN] base パス
  */
-static void list_dir(const char *base_path) {
+static void list_dir(struct dir_path *base) {
+  const char *base_path = base->path;
   int i;
   DIR *dir;
   struct dirent *dent;
   char path[PATH_MAX + 1];
   size_t path_len;
   struct info_list list;
-  struct subdir *subque = top;
+  struct dir_path *subque = base;
   dir = opendir(base_path);
   if (dir == NULL) {
     perror(base_path);
@@ -546,7 +540,7 @@ static void list_dir(const char *base_path) {
       if (!(name[0] == '.'
           && name[1 + (name[1] == '.')] == '\0')) {
         strncpy(&path[path_len], name, PATH_MAX - path_len);
-        subque->next = new_subdir(path, subque->next);
+        subque->next = new_dir_path(path, base->depth + 1, subque->next);
         subque = subque->next;
       }
     }
@@ -556,15 +550,18 @@ static void list_dir(const char *base_path) {
 }
 
 int main(int argc, char**argv) {
+  struct dir_path *top;
   char *path = parse_cmd_args(argc, argv);
   if (path == NULL) {
     return EXIT_FAILURE;
   }
-  top = new_subdir(path, NULL);
+  top = new_dir_path(path, 0, NULL);
   while(top != NULL) {
-    printf("\n%s:\n", top->path);
-    list_dir(top->path);
-    struct subdir *tmp = top;
+    if (top->depth != 0) {
+      printf("\n%s:\n", top->path);
+    }
+    list_dir(top);
+    struct dir_path *tmp = top;
     top = top->next;
     free(tmp);
   }
