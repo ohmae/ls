@@ -577,19 +577,19 @@ static void list_dir(struct dir_path *base) {
 }
 
 int main(int argc, char**argv) {
-  struct dir_path *top;
+  struct dir_path *head;
   char *path = parse_cmd_args(argc, argv);
   if (path == NULL) {
     return EXIT_FAILURE;
   }
-  top = new_dir_path(path, 0, NULL);
-  while(top != NULL) {
-    if (top->depth != 0) {
-      printf("\n%s:\n", top->path);
+  head = new_dir_path(path, 0, NULL);
+  while(head != NULL) {
+    if (head->depth != 0) {
+      printf("\n%s:\n", head->path);
     }
-    list_dir(top);
-    struct dir_path *tmp = top;
-    top = top->next;
+    list_dir(head);
+    struct dir_path *tmp = head;
+    head = head->next;
     free(tmp);
   }
   return EXIT_SUCCESS;
