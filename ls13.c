@@ -397,24 +397,27 @@ static void add_info(struct info_list *list, struct info *info) {
  */
 static struct info *new_info(const char *path, const char *name) {
   struct info *info = xmalloc(sizeof(struct info));
-  info->link_ok = true;
-  info->link[0] = 0;
   strncpy(info->name, name, NAME_MAX + 1);
   if (lstat(path, &info->stat) != 0) {
     perror(path);
     free(info);
     return NULL;
   }
+  info->link_ok = false;
+  info->link[0] = 0;
+  info->link_mode = 0;
   if (S_ISLNK(info->stat.st_mode)) {
     struct stat link_stat;
     int link_len = readlink(path, info->link, PATH_MAX);
     if (link_len > 0) {
       info->link[link_len] = 0;
     }
-    if (stat(path, &link_stat) != 0) {
-      info->link_ok = false;
+    if (stat(path, &link_stat) == 0) {
+      info->link_ok = true;
       info->link_mode = link_stat.st_mode;
     }
+  } else {
+    info->link_ok = true;
   }
   return info;
 }
