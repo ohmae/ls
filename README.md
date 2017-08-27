@@ -1,4 +1,5 @@
 # 「ls」っぽいコマンド
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
 
 車輪の再発明を通じて勉強しようというコンセプトで
 「ls」っぽいコマンドを作成し、その過程を解説していきます。
