@@ -1,7 +1,7 @@
 /**
  * @file ls2.c
  *
- * Copyright(c) 2015 大前良介(OHMAE Ryosuke)
+ * Copyright (c) 2015 大前良介 (OHMAE Ryosuke)
  *
  * This software is released under the MIT License.
  * http://opensource.org/licenses/MIT
@@ -9,7 +9,7 @@
  * @brief lsコマンド風のプログラムを作るNo.2
  * 関数化
  *
- * @author <a href="mailto:ryo@mm2d.net">大前良介(OHMAE Ryosuke)</a>
+ * @author <a href="mailto:ryo@mm2d.net">大前良介 (OHMAE Ryosuke)</a>
  * @date 2015/11/11
  */
 #include <stdio.h>

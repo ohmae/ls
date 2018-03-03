@@ -1,7 +1,7 @@
 /**
  * @file ls13.c
  *
- * Copyright(c) 2015 大前良介(OHMAE Ryosuke)
+ * Copyright (c) 2015 大前良介 (OHMAE Ryosuke)
  *
  * This software is released under the MIT License.
  * http://opensource.org/licenses/MIT
@@ -9,7 +9,7 @@
  * @brief lsコマンド風のプログラムを作るNo.13
  * ファイル指定への対応
  *
- * @author <a href="mailto:ryo@mm2d.net">大前良介(OHMAE Ryosuke)</a>
+ * @author <a href="mailto:ryo@mm2d.net">大前良介 (OHMAE Ryosuke)</a>
  * @date 2015/11/30
  */
 #include <stdio.h>
