@@ -18,7 +18,11 @@
 - [ユーザ名、グループ名の表示と日時のフォーマット](http://www.mm2d.net/main/prog/linux/ls-06.html)
 - [シンボリックリンクのリンク先表示](http://www.mm2d.net/main/prog/linux/ls-07.html)
 - [ファイル種別に基づく色付き表示](http://www.mm2d.net/main/prog/linux/ls-08.html)
-
+- [サブディレクトリの再帰的表示](http://www.mm2d.net/main/prog/linux/ls-09.html)
+- [サブディレクトリの再帰的表示の改善](http://www.mm2d.net/main/prog/linux/ls-10.html)
+- [ソート機能の追加](http://www.mm2d.net/main/prog/linux/ls-11.html)
+- [ファイル指定できるようにする](http://www.mm2d.net/main/prog/linux/ls-12.html)
+- [複数のパスを指定できるようにする](http://www.mm2d.net/main/prog/linux/ls-13.html)
 
 ## Author
 大前 良介 (OHMAE Ryosuke)
